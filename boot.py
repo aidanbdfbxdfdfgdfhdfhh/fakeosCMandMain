@@ -1,9 +1,7 @@
 from pathlib import Path
-import subprocess
 import sys
 import json
-
-
+import os # Added for execv
 
 with open("info.json", "r") as f:
     info = json.load(f)
@@ -11,33 +9,31 @@ with open("info.json", "r") as f:
 BootAble = []
 boot = "BootMenu: "
 
-def get_bootable_files(folder_path,btlist):
+def get_bootable_files(folder_path, btlist):
     path = Path(folder_path)
-    # Iterate through all .py files and grab their names
-    for file in path.glob("*.py"):
-        btlist.append(file.name)
-
-# Usage
+    if path.exists(): # Safety check
+        for file in path.glob("*.py"):
+            btlist.append(file.name)
 
 # Try USB first
 get_bootable_files(info["USB"], BootAble)
 
 # If USB was empty, try the Boot folder
-if not BootAble: # This is the same as if BootAble == []
-    get_bootable_files(info["Boot"], BootAble) # Add files directly to BootAble
+if not BootAble:
+    get_bootable_files(info["Boot"], BootAble)
 
-# Now print whatever we found (either USB or Boot)
+# Print found options
 for key in BootAble:
     print(key)
-
 
 while True:
     user = input(boot)
     if user in BootAble:
-        # Start the next file
-        subprocess.Popen([sys.executable, user])
+        # 1. Determine the correct full path
+        full_path = Path(info["USB"]) / user
+        if not full_path.exists():
+            full_path = Path(info["Boot"]) / user
 
-        # Close the current file cleanly
-
-
-        
+        # 2. Replace current process with the new script
+        # This fixes the EOFError by keeping the terminal connection
+        os.execv(sys.executable, [sys.executable, str(full_path)])

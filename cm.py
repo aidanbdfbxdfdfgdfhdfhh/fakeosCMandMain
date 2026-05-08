@@ -64,6 +64,8 @@ def cl(user_input,instalCheck):
             func()
         elif cm == "shutdown":
             func()
+        elif cm == "pwd":
+            func()       
         else:
             path = args[0] if args else "."
             func(path)
@@ -106,6 +108,11 @@ def get_display_path():
     return f"~/{relative}"
 
 
+def pwd(path_unused=None):
+    # This prints the exact absolute path you are currently in
+    print(os.getcwd())
+
+
 def cd(target_path):
     # 1. Calculate what the NEW path would be
     current_dir = Path.cwd()
@@ -131,5 +138,6 @@ commands = {
     "help":help,
     "cd":cd,
     "shutdown":shutdown,
-    "nano":nano
+    "nano":nano,
+    "pwd": pwd
 }
