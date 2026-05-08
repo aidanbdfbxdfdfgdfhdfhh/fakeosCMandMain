@@ -15,12 +15,12 @@ def get_bootable_files(folder_path, btlist):
         for file in path.glob("*.py"):
             btlist.append(file.name)
 
-# Try USB first
-get_bootable_files(info["USB"], BootAble)
+# Try BOOTSCAN first
+get_bootable_files(info["BOOTSCAN"], BootAble)
 
-# If USB was empty, try the Boot folder
+# If BOOTSCAN was empty
 if not BootAble:
-    get_bootable_files(info["Boot"], BootAble)
+    print(f"no os in {info["BOOTSCAN"]}")
 
 # Print found options
 for key in BootAble:
