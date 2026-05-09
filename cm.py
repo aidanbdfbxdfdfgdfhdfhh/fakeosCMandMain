@@ -140,7 +140,10 @@ def python(pyfile):
         # STORE ONLY THE FUNCTION NAMES
 
 def cp(filename, filepath):
-    shutil.copy2(filename, f"{filepath}/{filename}")
+    try:
+        shutil.copy2(filename, f"{filepath}/{filename}")
+    except FileNotFoundError:
+        print(FileNotFoundError)
 
 commands = {
     "ls": ls,
