@@ -26,7 +26,7 @@ BASE_URL = f"https://raw.githubusercontent.com/{USERNAME}/{REPO}/{BRANCH}/"
 
 # 3. Download each file
 current_dir = Path(__file__).parent
-"""
+
 for filename in FILES:
     print(f"Downloading {filename}...")
     try:
@@ -39,7 +39,7 @@ for filename in FILES:
         
     except Exception as e:
         print(f"Failed to download {filename}: {e}")
-"""
+
 print("\nAll tasks finished!")
 
 
