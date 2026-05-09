@@ -5,7 +5,7 @@ def pacman(FILES):
 
     # 1. Configuration - Replace these with your actual details
     USERNAME = "aidanbdfbxdfdfgdfhdfhh"
-    REPO = "fakeosCMandMain"
+    REPO = "repo"
     BRANCH = "main" # or "master"
 
 
