@@ -6,7 +6,8 @@ import shutil
 import subprocess
 import requests
 
-def pacman(FILES):
+def pacman(*FILES):
+    print("started")
 
     # 1. Configuration - Replace these with your actual details
     USERNAME = "aidanbdfbxdfdfgdfhdfhh"
@@ -78,33 +79,7 @@ def rm(path_name=""):
     else:
         print("Deletion cancelled.")
 
-def cl(user_input,instalCheck):
 
-    
-    cm = user_input[0]    # The first word is the command name
-    args = user_input[1:] # Everything else is a list of arguments
-
-
-    if cm in commands:
-        
-        func = commands[cm]
-        # Check if the command actually needs arguments
-        if cm == "clear":
-            func()
-        elif cm == "shutdown":
-            func()
-        elif cm == "pwd":
-            func()    
-        elif cm == "help":
-            help() 
-            func(*args)
-        return True
-
-    else:
-        if instalCheck == False:
-            print(f"Command '{cm}' not found.")
-        else:
-            return False
         
 def help():
     print(
@@ -171,6 +146,40 @@ def cp(filename, filepath):
         shutil.copy2(filename, f"{filepath}/{filename}")
     except FileNotFoundError:
         print(FileNotFoundError)
+
+
+##Input
+def cl(user_input,instalCheck):
+
+    
+    cm = user_input[0]    # The first word is the command name
+    args = user_input[1:] # Everything else is a list of arguments
+
+
+    if cm in commands:
+        
+        func = commands[cm]
+        # Check if the command actually needs arguments
+        if cm == "clear":
+            func()
+        elif cm == "shutdown":
+            func()
+        elif cm == "pwd":
+            func()    
+        elif cm == "help":
+            help() 
+        else:
+            func(*args)
+        return True
+
+    else:
+        if instalCheck == False:
+            print(f"Command '{cm}' not found.")
+        else:
+            return False
+
+
+
 
 commands = {
     "ls": ls,
