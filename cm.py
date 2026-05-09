@@ -70,8 +70,7 @@ def cl(user_input,instalCheck):
         elif cm == "help":
             help()   
         else:
-            path = args[0] if args else "."
-            func(path)
+            func(*args)
         return True
 
     else:
@@ -140,8 +139,8 @@ def python(pyfile):
         print("\nInterrupted! Returning to the previous file.")
         # STORE ONLY THE FUNCTION NAMES
 
-def cp(filename,filepath):
-    shutil.copy2('main.py', f"{filepath}/{filename}")
+def cp(filename, filepath):
+    shutil.copy2(filename, f"{filepath}/{filename}")
 
 commands = {
     "ls": ls,
