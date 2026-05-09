@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import shutil
 import subprocess
+from pacMan import pacman
 
 
 
@@ -68,8 +69,7 @@ def cl(user_input,instalCheck):
         elif cm == "pwd":
             func()    
         elif cm == "help":
-            help()   
-        else:
+            help() 
             func(*args)
         return True
 
@@ -156,5 +156,6 @@ commands = {
     "nano":nano,
     "pwd": pwd,
     "python":python,
-    "cp":cp
+    "cp":cp,
+    "pacman":pacman
 }

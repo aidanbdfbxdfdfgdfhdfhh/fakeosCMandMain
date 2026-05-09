@@ -2,7 +2,7 @@ import shutil
 import json
 from cm import commands,clear,cl,get_display_path
 clear()
-
+import shlex
 import os
 import time
 import traceback
@@ -62,7 +62,7 @@ def run():
 
     while True:
         
-        user_input = prompt().split()
+        user_input = shlex.split(prompt())
         if not user_input:
             continue
         instalCheck = False
