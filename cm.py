@@ -138,7 +138,11 @@ def python(pyfile):
     except KeyboardInterrupt:
         # This catches Ctrl+C if it bubbles up to the parent script
         print("\nInterrupted! Returning to the previous file.")
-# STORE ONLY THE FUNCTION NAMES
+        # STORE ONLY THE FUNCTION NAMES
+
+def cp(filename,filepath):
+    shutil.copy2('main.py', f"{filepath}/{filename}")
+
 commands = {
     "ls": ls,
     "clear": clear,
@@ -149,5 +153,6 @@ commands = {
     "shutdown":shutdown,
     "nano":nano,
     "pwd": pwd,
-    "python":python
+    "python":python,
+    "cp":cp
 }
