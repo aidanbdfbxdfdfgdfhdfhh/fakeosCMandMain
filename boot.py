@@ -30,10 +30,9 @@ while True:
     user = input(boot)
     if user in BootAble:
         # 1. Determine the correct full path
-        full_path = Path(info["USB"]) / user
-        if not full_path.exists():
-            full_path = Path(info["Boot"]) / user
+        full_path = Path(info["BOOTSCAN"]) / user
 
         # 2. Replace current process with the new script
         # This fixes the EOFError by keeping the terminal connection
         os.execv(sys.executable, [sys.executable, str(full_path)])
+
