@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 import json
 import shutil
+import subprocess
 
 
 
@@ -65,7 +66,9 @@ def cl(user_input,instalCheck):
         elif cm == "shutdown":
             func()
         elif cm == "pwd":
-            func()       
+            func()    
+        elif cm == "help":
+            help()   
         else:
             path = args[0] if args else "."
             func(path)
@@ -87,6 +90,7 @@ remove a folder = rm folrder
 to clear the ternale = clear
 to make files or edit them  = nano
 change dir = cd
+python egfilename.py to run python files
 
 
 """
@@ -127,8 +131,13 @@ def cd(target_path):
 def shutdown():
     sys.exit()
 
-
-
+def python(pyfile):
+    try:
+        # Replace 'another_file.py' with your target filename
+        subprocess.run(["python", pyfile])
+    except KeyboardInterrupt:
+        # This catches Ctrl+C if it bubbles up to the parent script
+        print("\nInterrupted! Returning to the previous file.")
 # STORE ONLY THE FUNCTION NAMES
 commands = {
     "ls": ls,
@@ -139,5 +148,6 @@ commands = {
     "cd":cd,
     "shutdown":shutdown,
     "nano":nano,
-    "pwd": pwd
+    "pwd": pwd,
+    "python":python
 }
